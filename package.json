@@ -1,0 +1,17 @@
+{
+  "name": "cypress-api-testing",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "cypress": "^13.15.0",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "typescript": "^5.5.3"
+  },
+  "private": true,
+  "author": "Saikamal",
+  "license": "ISC",
+  "description": ""
+}

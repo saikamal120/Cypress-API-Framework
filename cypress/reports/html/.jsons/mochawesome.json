@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-09-26T11:30:54.822Z",
+    "end": "2024-09-26T11:30:57.331Z",
+    "duration": 2509,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "19c25c2c-6dc4-46f9-bdcf-01755db1fb9d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\booksApiCalls.cy.ts",
+      "file": "cypress\\e2e\\booksApiCalls.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "af11e142-bc6b-4ed9-80e3-d3d60df94d54",
+          "title": "Simple Books API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "List of books",
+              "fullTitle": "Simple Books API List of books",
+              "timedOut": null,
+              "duration": 1519,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//List of books available in API\ncallsOnBooks.getListOfBooks(200, 6);",
+              "err": {},
+              "uuid": "f8456b2e-2715-4930-b5d5-55b1dab0dcf6",
+              "parentUUID": "af11e142-bc6b-4ed9-80e3-d3d60df94d54",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get a single book",
+              "fullTitle": "Simple Books API Get a single book",
+              "timedOut": null,
+              "duration": 614,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//get single book information based on bookid\ncallsOnBooks.getSingleBook(1, 200);",
+              "err": {},
+              "uuid": "7e15b1e8-30fd-4eaa-92f5-f25a5c8ce5c3",
+              "parentUUID": "af11e142-bc6b-4ed9-80e3-d3d60df94d54",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Error on exceeding the list ",
+              "fullTitle": "Simple Books API Error on exceeding the list ",
+              "timedOut": null,
+              "duration": 269,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//error upon exceeding limit of book list\ncallsOnBooks.getSingleBook(7, 404);",
+              "err": {},
+              "uuid": "ea1ebbfc-6a96-43e7-a827-4dd4eef0b06f",
+              "parentUUID": "af11e142-bc6b-4ed9-80e3-d3d60df94d54",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f8456b2e-2715-4930-b5d5-55b1dab0dcf6",
+            "7e15b1e8-30fd-4eaa-92f5-f25a5c8ce5c3",
+            "ea1ebbfc-6a96-43e7-a827-4dd4eef0b06f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2402,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
