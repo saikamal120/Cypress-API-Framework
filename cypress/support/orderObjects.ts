@@ -9,7 +9,6 @@ export const getAllOrders = (authToken) => {
             'Authorization': 'Bearer ' + authToken
         }
     }).then((response) =>{
-        //Expecting the response status code to be 200
         expect(response.status).to.eq(200);
         expect(response.body).has.length(1);
     })
@@ -25,7 +24,6 @@ export const getOrder = (authToken, orderNumber, customerName) => {
             'Authorization': 'Bearer ' + authToken
         }
     }).then((response) =>{
-        //Expecting the response status code to be 200
         expect(response.status).to.eq(200);
         expect(response.body.customerName).to.eq(customerName);
     })
@@ -45,7 +43,6 @@ export const updatingAnOrder = (authToken, orderNumber, customerName) => {
             "customerName": customerName
         }
     }).then((response) =>{
-        //Expecting the response status code to be 200
         expect(response.status).to.eq(204)
     })
 }
@@ -60,7 +57,6 @@ export const deleteAnOrder = (authToken, orderNumber) => {
             'Authorization': 'Bearer ' + authToken
         }
     }).then((response) =>{
-        //Expecting the response status code to be 200
         expect(response.status).to.eq(204);
     })
 }
