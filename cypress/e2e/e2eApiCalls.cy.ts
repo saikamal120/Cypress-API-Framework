@@ -21,7 +21,7 @@ describe('Simple Books API with list of books, new orders, update orders and del
             callsOnBooks.getListOfBooks(200,6);
        })
        it('Get a single book', () => {
-            //get single book information based on bookid
+            //get single book information based on bookId
             callsOnBooks.getSingleBook(1,200);
        })
        it('Error on non-existing bookingId ', () => {
