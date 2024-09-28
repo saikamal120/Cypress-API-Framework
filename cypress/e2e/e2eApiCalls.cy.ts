@@ -24,8 +24,8 @@ describe('Simple Books API with list of books, new orders, update orders and del
             //get single book information based on bookid
             callsOnBooks.getSingleBook(1,200);
        })
-       it('Error on exceeding the list ', () => {
-            //Negitive - error upon exceeding limit of book list
+       it('Error on non-existing bookingId ', () => {
+            //Negative - error upon exceeding limit of book list
             callsOnBooks.getSingleBook(7,404);
        })
        it(("Submit an Order, orderNumber1"), () => {
