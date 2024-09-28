@@ -3,9 +3,6 @@ import {APIRequest, submitOrder} from "../support/orderObjects";
 
 describe('Simple Books API with list of books, new orders, update orders and delete orders', () => {
     var authToken: any;
-    var orderNumber1: any;
-    var orderNumber2: any;
-    var invaldOrderNumber: 'qwerty';
 
     before(("capture access token"), function () {
         //creating new token every time the script runs and pass token to next textcases
@@ -19,14 +16,12 @@ describe('Simple Books API with list of books, new orders, update orders and del
     }
     it(("Complex successful test case to submit three Orders, get all orders then update third order, then Get it, then delete second order and then Get all remaining orders"), () => {
     // Submit an order and fetch oder details and pass to next testcases
-    var orderNumber1: any;
-    var orderNumber2: any;
+    let orderNumber2: any;
     let cypressTestUser = 'CypressTestUser_';
     const orderNum1 = new submitOrder(authToken,'1', cypressTestUser+ getRandomNumber(1,10),201)
     const orderNum2 = new submitOrder(authToken,'1',cypressTestUser+ getRandomNumber(1,10),201)
     const orderNum3 = new submitOrder(authToken,'1',cypressTestUser+ getRandomNumber(1,10),201)
     orderNum1.makeOrderSubmit().then(function ($order) {
-        orderNumber1 = $order;
         orderNum2.makeOrderSubmit().then(function ($order) {
             orderNumber2 = $order;
             orderNum3.makeOrderSubmit().then(function ($order) {
