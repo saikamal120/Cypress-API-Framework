@@ -27,6 +27,7 @@ export const getOrder = (authToken, orderNumber, status) => {
         failOnStatusCode: false
     }).then((response) =>{
         expect(response.status).to.eq(status);
+        cy.log('Response body structure:', JSON.stringify(response.body, null, 2))
     })
 }
 
@@ -90,15 +91,16 @@ export class submitOrder {
     authToken: string;
     bookingId: any;
     customerName: any;
-    stausCode: number;
+    statusCode: number;
     constructor(authToken: string, bookingId: string, customerName: string, statusCode: number )
     {
         this.authToken  = authToken,
         this.bookingId = bookingId,
         this.customerName = customerName,
-        this.stausCode = statusCode
+        this.statusCode = statusCode
     }
     makeOrderSubmit(){
+        cy.log('Submit an Order with customerName:'+ this.customerName);
         cy.request({
             method: 'POST',
             url: Cypress.env("ORDERS_BASE_URL"),
@@ -112,7 +114,7 @@ export class submitOrder {
             },
             failOnStatusCode:false
         }).then(response => {
-            expect(response.status).to.eq(this.stausCode);
+            expect(response.status).to.eq(this.statusCode);
             cy.wrap(response.body.orderId).as("orderNumber")
             cy.log('Response body structure:', JSON.stringify(response.body, null, 2))
         })
