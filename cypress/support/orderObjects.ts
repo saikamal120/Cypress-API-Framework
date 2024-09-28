@@ -1,6 +1,7 @@
 
 // @ts-ignore
 export const getAllOrders = (authToken) => {
+    cy.log('Get All existing Orders');
     cy.request({
         method: 'GET',
         url: Cypress.env("ORDERS_BASE_URL"),
