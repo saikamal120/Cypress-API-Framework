@@ -10,7 +10,7 @@ describe('Simple Books API with list of books, new orders, update orders and del
         var invalidOrderNumber: 'qwerty';
 
        before(("capture access token"), function () {
-            //creating new token every time the script runs and pass token to next textcases
+            //creating new token every time the script runs and pass token to next testcases
             const apiToken = new APIRequest();
             apiToken.makeLoginRequest().then(function ($token) {
                 authToken = $token;
