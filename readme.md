@@ -24,7 +24,7 @@ Update and invaild order,
 Delete the order, 
 Delete an invalid order
 
-Created function files for books and orders seperatly for clear understanding ie booksObjects.ts and orderObjects.ts
+Created function files for books and orders seperatly for clear understanding i.e cypress/support/booksObjects.ts and cypress/support/orderObjects.ts
 
 # Installations and Project Setup
 The steps below will take you all the way through Cypress. 
