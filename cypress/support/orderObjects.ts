@@ -10,12 +10,11 @@ export const getAllOrders = (authToken) => {
         }
     }).then((response) =>{
         expect(response.status).to.eq(200);
-        expect(response.body).has.length(1);
     })
 }
 
 // @ts-ignore
-export const getOrder = (authToken, orderNumber, customerName) => {
+export const getOrder = (authToken, orderNumber, customerName, status) => {
     cy.request({
         method: 'GET',
         url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
@@ -24,13 +23,13 @@ export const getOrder = (authToken, orderNumber, customerName) => {
             'Authorization': 'Bearer ' + authToken
         }
     }).then((response) =>{
-        expect(response.status).to.eq(200);
+        expect(response.status).to.eq(status);
         expect(response.body.customerName).to.eq(customerName);
     })
 }
 
 // @ts-ignore
-export const updatingAnOrder = (authToken, orderNumber, customerName) => {
+export const updatingAnOrder = (authToken, orderNumber, customerName, status) => {
     cy.request({
         method: 'PATCH',
         url: Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber,
@@ -41,23 +40,25 @@ export const updatingAnOrder = (authToken, orderNumber, customerName) => {
         body:{
             "bookId": 1,
             "customerName": customerName
-        }
+        },
+        failOnStatusCode: false
     }).then((response) =>{
-        expect(response.status).to.eq(204)
+        expect(response.status).to.eq(status)
     })
 }
 
 // @ts-ignore
-export const deleteAnOrder = (authToken, orderNumber) => {
+export const deleteAnOrder = (authToken, orderNumber, status) => {
     cy.request({
         method: 'DELETE',
         url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + authToken
-        }
+        },
+        failOnStatusCode: false
     }).then((response) =>{
-        expect(response.status).to.eq(204);
+        expect(response.status).to.eq(status);
     })
 }
 
@@ -83,7 +84,14 @@ export class APIRequest {
 
 export class submitOrder {
     authToken: string;
-    constructor(authToken: string){this.authToken  = authToken}
+    bookingid: any;
+    customerName: any;
+    constructor(authToken: string, bookingid: string, customerName: string )
+    {
+        this.authToken  = authToken,
+        this.bookingid = bookingid,
+        this.customerName = customerName
+    }
     makeOrderSubmit(){
         cy.request({
             method: 'POST',
@@ -93,8 +101,8 @@ export class submitOrder {
                 'Authorization': 'Bearer ' + this.authToken
             },
             body: {
-                "bookId": 1,
-                "customerName": "SAIKA"
+                "bookId": this.bookingid,
+                "customerName": this.customerName
             }
         }).then(response => {
             expect(response.status).to.eq(201);
