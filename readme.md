@@ -2,32 +2,32 @@ Simple Books API
 
 This repo contains an example of cypress api project , with the tests written in Cypress.
 
-There are 3 main api's in this project 
+There are 3 main apis in this project
 
 BOOKS_BASE_URL=https://simple-books-api.glitch.me/books
 ORDERS_BASE_URL=https://simple-books-api.glitch.me/orders
 TOKEN_BASE_URL=https://simple-books-api.glitch.me/api-clients/
 
 Scenarios covered in the project are below:
-Where Token api (TOKEN_BASE_URL) is for token creation for accessing remaining api calls 
-And Books api (ORDERS_BASE_URL) is basically for 
-GET the books in call, 
-GET the maximum list, 
-Error check on exceeding the limit 
-And order api (TOKEN_BASE_URL) is for 
-POST an Order1, 
-POST another Order2, 
-GET the order1, 
+Where Token api (TOKEN_BASE_URL) is for token creation for accessing remaining api calls
+And Books api (ORDERS_BASE_URL) is basically for
+GET the books in call,
+GET the maximum list,
+Error check on exceeding the limit
+And order api (TOKEN_BASE_URL) is for
+POST an Order1,
+POST another Order2,
+GET the order1,
 GET the order2,
-PATCH an Order with update, 
-Update and invaild order, 
-Delete the order, 
+PATCH an Order with update,
+Update and invalid order,
+Delete the order,
 Delete an invalid order
 
-Created function files for books and orders seperatly for clear understanding i.e cypress/support/booksObjects.ts and cypress/support/orderObjects.ts
+Created function files for books and orders separately for clear understanding i.e. cypress/support/booksObjects.ts and cypress/support/orderObjects.ts
 
 # Installations and Project Setup
-The steps below will take you all the way through Cypress. 
+The steps below will take you all the way through Cypress.
 
 If you get stuck, here is more help:
 
@@ -44,9 +44,9 @@ cd Cypress-API-Framework.git
 ## install the node_modules
 npm install
 
-## install cypress 
+## install cypress
 npm install cypress --save-dev
 
-For all testcases combined, I've created one testrunner file e2eApiCalls.cy.ts 
+For all testcases combined, I've created one test runner file e2eApiCalls.cy.ts, Also created same using api chaining method in e2eApiCallsUsingChaining.cy.ts
 
 we can run the file by executing "cypress open" upon selecting available browser or can be run directly on headless mode by executing "cypress run" 
