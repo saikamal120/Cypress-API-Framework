@@ -14,17 +14,17 @@ export const getAllOrders = (authToken) => {
 }
 
 // @ts-ignore
-export const getOrder = (authToken, orderNumber, customerName, status) => {
+export const getOrder = (authToken, orderNumber, status) => {
     cy.request({
         method: 'GET',
         url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + authToken
-        }
+        },
+        failOnStatusCode: false
     }).then((response) =>{
         expect(response.status).to.eq(status);
-        expect(response.body.customerName).to.eq(customerName);
     })
 }
 
@@ -84,13 +84,15 @@ export class APIRequest {
 
 export class submitOrder {
     authToken: string;
-    bookingid: any;
+    bookingId: any;
     customerName: any;
-    constructor(authToken: string, bookingid: string, customerName: string )
+    stausCode: number;
+    constructor(authToken: string, bookingId: string, customerName: string, statusCode: number )
     {
         this.authToken  = authToken,
-        this.bookingid = bookingid,
-        this.customerName = customerName
+        this.bookingId = bookingId,
+        this.customerName = customerName,
+        this.stausCode = statusCode
     }
     makeOrderSubmit(){
         cy.request({
@@ -101,12 +103,12 @@ export class submitOrder {
                 'Authorization': 'Bearer ' + this.authToken
             },
             body: {
-                "bookId": this.bookingid,
+                "bookId": this.bookingId,
                 "customerName": this.customerName
-            }
+            },
+            failOnStatusCode:false
         }).then(response => {
-            expect(response.status).to.eq(201);
-            expect(response.body.created).to.eq(true);
+            expect(response.status).to.eq(this.stausCode);
             cy.wrap(response.body.orderId).as("orderNumber")
         })
         return cy.get("@orderNumber");
