@@ -10,11 +10,13 @@ export const getAllOrders = (authToken) => {
         }
     }).then((response) =>{
         expect(response.status).to.eq(200);
+        cy.log('Response body structure:', JSON.stringify(response.body, null, 2))
     })
 }
 
 // @ts-ignore
 export const getOrder = (authToken, orderNumber, status) => {
+    cy.log('Get an Order with orderNumber:'+ orderNumber);
     cy.request({
         method: 'GET',
         url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
@@ -30,6 +32,7 @@ export const getOrder = (authToken, orderNumber, status) => {
 
 // @ts-ignore
 export const updatingAnOrder = (authToken, orderNumber, customerName, status) => {
+    cy.log('Update an Order with orderNumber:', orderNumber);
     cy.request({
         method: 'PATCH',
         url: Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber,
@@ -49,6 +52,7 @@ export const updatingAnOrder = (authToken, orderNumber, customerName, status) =>
 
 // @ts-ignore
 export const deleteAnOrder = (authToken, orderNumber, status) => {
+    cy.log('Delete an Order with orderNumber:'+ orderNumber);
     cy.request({
         method: 'DELETE',
         url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
@@ -110,6 +114,7 @@ export class submitOrder {
         }).then(response => {
             expect(response.status).to.eq(this.stausCode);
             cy.wrap(response.body.orderId).as("orderNumber")
+            cy.log('Response body structure:', JSON.stringify(response.body, null, 2))
         })
         return cy.get("@orderNumber");
     }
