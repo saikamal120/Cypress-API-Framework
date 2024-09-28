@@ -7,7 +7,7 @@ describe('Simple Books API with list of books, new orders, update orders and del
         var authToken: any;
         var orderNumber1: any;
         var orderNumber2: any;
-        var invaldOrderNumber: 'qwerty';
+        var invalidOrderNumber: 'qwerty';
 
        before(("capture access token"), function () {
             //creating new token every time the script runs and pass token to next textcases
@@ -61,14 +61,14 @@ describe('Simple Books API with list of books, new orders, update orders and del
        })
        it('Get an order, invalid order', () => {
              //Negative - Getting an invalid order
-             callsOnOrders.getOrder(authToken, invaldOrderNumber,404);
+             callsOnOrders.getOrder(authToken, invalidOrderNumber,404);
        })
        it('Update an order, with valid ordernumber2', () => {
             callsOnOrders.updatingAnOrder(authToken, orderNumber2, 'ROCK',204);
        })
        it('Update an order, with invalid order number', () => {
             // Negative case on invalid order
-            callsOnOrders.updatingAnOrder(authToken, invaldOrderNumber, 'ROCK',404);
+            callsOnOrders.updatingAnOrder(authToken, invalidOrderNumber, 'ROCK',404);
        })
        it('Get an order after update', () => {
             callsOnOrders.getOrder(authToken, orderNumber2,200);
