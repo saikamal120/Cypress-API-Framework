@@ -8,9 +8,7 @@ export default defineConfig({
     video: true,
     fixturesFolder: 'fixtures',
     env:{
-        BOOKS_BASE_URL:'https://simple-books-api.glitch.me/books/',
-        ORDERS_BASE_URL:'https://simple-books-api.glitch.me/orders',
-        TOKEN_BASE_URL:'https://simple-books-api.glitch.me/api-clients/'
+        URL: 'https://simple-books-api.glitch.me'
     }
 
 })
