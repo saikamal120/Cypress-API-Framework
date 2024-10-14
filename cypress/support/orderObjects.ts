@@ -1,16 +1,21 @@
 
+export const getHeaders = (authToken: string): Record<string, string> => {
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+    };
+};
+
 // @ts-ignore
-export const getAllOrders = (authToken) => {
+export const getAllOrders = (authToken, statusCode) => {
     cy.log('Get All existing Orders');
     cy.request({
         method: 'GET',
-        url: Cypress.env("ORDERS_BASE_URL"),
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + authToken
-        }
+        url: Cypress.env("URL")+"/orders",
+        headers: getHeaders(authToken),
+        failOnStatusCode: false
     }).then((response) =>{
-        expect(response.status).to.eq(200);
+        expect(response.status).to.eq(statusCode);
         cy.log('Response body structure:', JSON.stringify(response.body, null, 2))
     })
 }
@@ -20,11 +25,8 @@ export const getOrder = (authToken, orderNumber, status) => {
     cy.log('Get an Order with orderNumber:'+ orderNumber);
     cy.request({
         method: 'GET',
-        url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + authToken
-        },
+        url: Cypress.env("URL")+ "/orders" +'/'+ orderNumber,
+        headers: getHeaders(authToken),
         failOnStatusCode: false
     }).then((response) =>{
         expect(response.status).to.eq(status);
@@ -37,7 +39,7 @@ export const updatingAnOrder = (authToken, orderNumber, customerName, status) =>
     cy.log('Update an Order with orderNumber:', orderNumber);
     cy.request({
         method: 'PATCH',
-        url: Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber,
+        url: Cypress.env("URL")+ "/orders" +'/'+ orderNumber,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + authToken
@@ -57,7 +59,7 @@ export const deleteAnOrder = (authToken, orderNumber, status) => {
     cy.log('Delete an Order with orderNumber:'+ orderNumber);
     cy.request({
         method: 'DELETE',
-        url: (Cypress.env("ORDERS_BASE_URL") +'/'+ orderNumber),
+        url: (Cypress.env("URL")+ "/orders" +'/'+ orderNumber),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + authToken
@@ -72,7 +74,7 @@ export class APIRequest {
     makeLoginRequest(){
         cy.request({
             method: 'POST',
-            url: Cypress.env("TOKEN_BASE_URL"),
+            url: Cypress.env("URL")+"/api-clients",
             headers: {'Content-Type': 'application/json'},
             body: {
                 "clientName": 1,
@@ -104,7 +106,7 @@ export class submitOrder {
         cy.log('Submit an Order with customerName:'+ this.customerName);
         cy.request({
             method: 'POST',
-            url: Cypress.env("ORDERS_BASE_URL"),
+            url: Cypress.env("URL")+"/orders",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + this.authToken
