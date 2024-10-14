@@ -5,6 +5,7 @@ import * as callsOnBooks from "../support/booksObjects";
 
 describe('Simple Books API with list of books, new orders, update orders and delete orders', () => {
         var authToken: any;
+        var invalidAuthToken: 'asdfghjklmnopqrstuvwxyz';
         var orderNumber1: any;
         var orderNumber2: any;
         var invalidOrderNumber: 'qwerty';
@@ -49,7 +50,11 @@ describe('Simple Books API with list of books, new orders, update orders and del
        })
        it('Get all orders', () => {
             // Get all orders
-            callsOnOrders.getAllOrders(authToken);
+            callsOnOrders.getAllOrders(authToken,200);
+       })
+       it('Get all orders on invalid authtoken given', () => {
+             // Get all orders
+            callsOnOrders.getAllOrders(invalidAuthToken,401);
        })
        it('Get an order, order number 1', () => {
             //Getting an order response
@@ -63,7 +68,7 @@ describe('Simple Books API with list of books, new orders, update orders and del
              //Negative - Getting an invalid order
              callsOnOrders.getOrder(authToken, invalidOrderNumber,404);
        })
-       it('Update an order, with valid ordernumber2', () => {
+       it('Update an order, with valid order number2', () => {
             callsOnOrders.updatingAnOrder(authToken, orderNumber2, 'ROCK',204);
        })
        it('Update an order, with invalid order number', () => {
